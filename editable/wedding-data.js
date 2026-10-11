@@ -19,7 +19,7 @@ window.WEDDING_DATA = {
   wedding: {
     dateISO: "2026-11-20T12:30:00+05:30",
     dateLabel: "20th – 21st November 2026",
-    timeLabel: "20 – 21 November 2026",
+    timeLabel: "",
     dayLabel: "Friday & Saturday",
     dayNum: "20 – 21",
     monthLabel: "November",
@@ -52,6 +52,14 @@ window.WEDDING_DATA = {
     name: "Blue Diamond Resort",
     address: "NH-57, Garha, Darbhanga Road, Muzaffarpur, Bihar 843103",
     mapsQuery: "Blue Diamond Resort And Hotel, NH- 57, Garha, Darbhanga Road, Muzaffarpur, Bihar 843103",
+  },
+
+  familyCard: {
+    headline: "Banka Family Welcomes You",
+    quote: "A wedding is not just a celebration, it is a feeling shared with loved ones.",
+    message: "Thank you for standing by us, blessing Yash & Anita, and being a part of this beautiful journey.",
+    regardsLabel: "Regards",
+    regardsName: "Smt Narvadi Devi Banka",
   },
 
   rsvp: {
