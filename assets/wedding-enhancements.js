@@ -2,7 +2,7 @@
  * wedding-enhancements.js
  * 1. Background Music Engine with Luxury Equalizer Toggle Button
  * 2. Automatic Smooth Autoscroll (triggers right after blessing finishes and guest enters)
- * 3. Dynamic Contrast & Card Plaque Enhancements
+ * 3. Dynamic Card Enhancements & Text Polish
  */
 
 (function () {
@@ -23,7 +23,6 @@
   let isAudioPlaying = false;
   let audioUserToggled = false;
 
-  // Create Luxury Floating Music Toggle Button
   const musicBtn = document.createElement("button");
   musicBtn.className = "music-toggle-btn music-muted";
   musicBtn.id = "wedding-music-btn";
@@ -48,7 +47,6 @@
         musicBtn.classList.add("music-playing");
       })
       .catch((err) => {
-        // Autoplay may be restricted until user gesture
         console.log("Audio waiting for user gesture:", err);
       });
   }
@@ -75,7 +73,7 @@
 
   musicBtn.addEventListener("click", toggleAudio);
 
-  // Auto-start audio on first user interaction anywhere
+  // Auto-play audio on first user touch / click
   function handleFirstInteraction() {
     if (!audioUserToggled && !isAudioPlaying) {
       startAudio();
@@ -87,21 +85,20 @@
   window.addEventListener("touchstart", handleFirstInteraction, { passive: true });
 
   /* ==========================================================================
-     2. AUTOSCROLL ENGINE (Begins after blessing finishes and click)
+     2. DUAL-ENGINE AUTOSCROLL (Native + Lenis Support)
      ========================================================================== */
   let isAutoScrolling = false;
   let autoScrollPausedByUser = false;
   let autoScrollRaf = null;
   let lastFrameTime = null;
   let userInteractTimeout = null;
-  const SCROLL_SPEED_PX_PER_SEC = 42; // Elegant, comfortable reading pace
+  const SCROLL_SPEED_PX_PER_SEC = 40; // Luxurious, comfortable reading speed
 
-  // Floating Auto-scroll pill widget
   const scrollPill = document.createElement("button");
   scrollPill.className = "autoscroll-pill autoscroll-paused";
   scrollPill.id = "wedding-autoscroll-pill";
   scrollPill.setAttribute("type", "button");
-  scrollPill.style.display = "none"; // Shown once invitation opens
+  scrollPill.style.display = "none";
   scrollPill.innerHTML = `
     <span class="autoscroll-dot"></span>
     <span class="autoscroll-text">Auto-Scroll</span>
@@ -121,7 +118,7 @@
     }
   }
 
-  function stepAutoScroll(timestamp) {
+  function stepNativeAutoScroll(timestamp) {
     if (!isAutoScrolling) return;
 
     if (!lastFrameTime) {
@@ -131,21 +128,28 @@
     lastFrameTime = timestamp;
 
     const scrollDelta = (SCROLL_SPEED_PX_PER_SEC * deltaMs) / 1000;
-
     const maxScroll =
       document.documentElement.scrollHeight - window.innerHeight;
     const currentScroll =
       window.scrollY || document.documentElement.scrollTop || 0;
 
     if (currentScroll >= maxScroll - 6) {
-      // Reached the end
       stopAutoScroll();
-      updateScrollPillUI(false, "End of Story");
+      updateScrollPillUI(false, "End of Invitation");
       return;
     }
 
-    window.scrollBy(0, scrollDelta);
-    autoScrollRaf = requestAnimationFrame(stepAutoScroll);
+    if (window.lenis && typeof window.lenis.scrollTo === "function") {
+      // Advance Lenis target
+      window.lenis.scrollTo(currentScroll + scrollDelta, {
+        immediate: true,
+        force: true,
+      });
+    } else {
+      window.scrollBy(0, scrollDelta);
+    }
+
+    autoScrollRaf = requestAnimationFrame(stepNativeAutoScroll);
   }
 
   function startAutoScroll() {
@@ -153,7 +157,7 @@
     isAutoScrolling = true;
     lastFrameTime = null;
     updateScrollPillUI(true);
-    autoScrollRaf = requestAnimationFrame(stepAutoScroll);
+    autoScrollRaf = requestAnimationFrame(stepNativeAutoScroll);
   }
 
   function stopAutoScroll() {
@@ -181,7 +185,7 @@
 
   scrollPill.addEventListener("click", toggleAutoScroll);
 
-  // Pause briefly if user scrolls or touches manually
+  // Pause temporarily when user interacts
   function handleManualScrollEvent() {
     if (!isAutoScrolling) return;
     stopAutoScroll();
@@ -199,65 +203,69 @@
   window.addEventListener("wheel", handleManualScrollEvent, { passive: true });
   window.addEventListener("touchmove", handleManualScrollEvent, { passive: true });
 
-  // Start Autoscroll after blessing finishes and click:
-  function triggerPostBlessingFlow() {
-    // 1. Start audio playback
+  // Hook called when invitation is unlocked
+  window.__initAutoScroll = function (lenisInstance) {
+    if (lenisInstance) {
+      window.lenis = lenisInstance;
+    }
     startAudio();
 
-    // 2. Wait for gate reveal transition to finish (~1200ms)
+    // Give the reveal animation 1.2s to complete, then start smooth auto-scroll
     setTimeout(() => {
       scrollPill.style.display = "inline-flex";
       startAutoScroll();
     }, 1200);
-  }
+  };
 
-  // Listen to Enter Click on Blessing Screen
-  document.addEventListener("click", function (e) {
-    const btn = e.target.closest("button");
-    if (!btn) return;
+  // Also listen for button clicks to trigger flow
+  document.addEventListener(
+    "click",
+    function (e) {
+      const btn = e.target.closest("button");
+      if (!btn) return;
 
-    // Check if clicked the blessing enter button or cover begin button
-    const label = (btn.getAttribute("aria-label") || "").toLowerCase();
-    const text = (btn.textContent || "").toLowerCase();
+      const label = (btn.getAttribute("aria-label") || "").toLowerCase();
+      const text = (btn.textContent || "").toLowerCase();
 
-    if (
-      label.includes("enter") ||
-      text.includes("enter") ||
-      btn.closest('[aria-label="Enter the invitation"]')
-    ) {
-      triggerPostBlessingFlow();
-    } else if (
-      label.includes("begin") ||
-      text.includes("begin") ||
-      btn.closest('[aria-label="Wedding invitation cover"]')
-    ) {
-      // Start audio immediately on cover begin
-      startAudio();
-    }
-  }, true);
+      if (
+        label.includes("enter") ||
+        text.includes("enter") ||
+        btn.closest('[aria-label="Enter the invitation"]')
+      ) {
+        startAudio();
+        setTimeout(() => {
+          scrollPill.style.display = "inline-flex";
+          startAutoScroll();
+        }, 1200);
+      } else if (
+        label.includes("begin") ||
+        text.includes("begin") ||
+        btn.closest('[aria-label="Wedding invitation cover"]')
+      ) {
+        startAudio();
+      }
+    },
+    true
+  );
 
   /* ==========================================================================
-     3. DOM & PLAQUE ENHANCEMENTS (Fix spacing, contrast, cards)
+     3. DOM ENHANCEMENTS & PLAQUES
      ========================================================================== */
   function enhanceDOM() {
-    // A. Check for Family Card (QM) and wrap inner text in elegant plaque
+    // 1. Family Card plaque
     const familyCardSection = document.querySelector("section.py-12");
     if (familyCardSection) {
-      const innerTextContainer = familyCardSection.querySelector(".absolute.inset-0.flex-col");
-      if (innerTextContainer && !innerTextContainer.classList.contains("family-card-plaque")) {
-        innerTextContainer.classList.add("family-card-plaque");
+      const innerText = familyCardSection.querySelector(".absolute.inset-0.flex-col");
+      if (innerText && !innerText.classList.contains("family-card-plaque")) {
+        innerText.classList.add("family-card-plaque");
       }
     }
 
-    // B. Fix Couple roles if empty
-    const coupleCards = document.querySelectorAll("section .grid.sm\\:grid-cols-2 article");
+    // 2. Couple Roles
+    const coupleCards = document.querySelectorAll("section.py-24 article");
     if (coupleCards && coupleCards.length >= 2) {
-      const card1 = coupleCards[0];
-      const card2 = coupleCards[1];
-
-      const p1 = card1.querySelector("p.text-temple-bronze\\/65") || card1.querySelector("p");
-      const p2 = card2.querySelector("p.text-temple-bronze\\/65") || card2.querySelector("p");
-
+      const p1 = coupleCards[0].querySelector("p");
+      const p2 = coupleCards[1].querySelector("p");
       if (p1 && (!p1.textContent || p1.textContent.trim() === "")) {
         p1.textContent = "The Bride";
       }
@@ -266,7 +274,7 @@
       }
     }
 
-    // C. Clean any replacement character artifacts in texts
+    // 3. Clean any replacement character artifacts
     const walker = document.createTreeWalker(
       document.body,
       NodeFilter.SHOW_TEXT,
@@ -280,30 +288,29 @@
       }
     }
 
-    // D. If main is mounted and scrollPill is hidden, show it
+    // 4. Show pill if main invitation is active
     const main = document.querySelector("main:not(.sr-only)");
     if (main && scrollPill.style.display === "none") {
       scrollPill.style.display = "inline-flex";
     }
   }
 
-  // Observe DOM changes to continuously ensure enhancements
   const observer = new MutationObserver(enhanceDOM);
 
-  document.addEventListener("DOMContentLoaded", function () {
-    document.body.appendChild(musicBtn);
-    document.body.appendChild(scrollPill);
-    observer.observe(document.body, { childList: true, subtree: true });
-    enhanceDOM();
-  });
-
-  if (document.readyState === "complete" || document.readyState === "interactive") {
+  function init() {
     if (!document.getElementById("wedding-music-btn")) {
       document.body.appendChild(musicBtn);
     }
     if (!document.getElementById("wedding-autoscroll-pill")) {
       document.body.appendChild(scrollPill);
     }
+    observer.observe(document.body, { childList: true, subtree: true });
     enhanceDOM();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
   }
 })();

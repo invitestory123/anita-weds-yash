@@ -36,10 +36,10 @@ window.WEDDING_DATA = {
   },
 
   cover: {
-    kicker: "Welcome to",
-    title: "Our Wedding",
-    headline: "A Beautiful Beginning Awaits",
-    gratitude: "Thank you for being a part of our special day.",
+    kicker: "॥ श्री गणेशाय नमः ॥",
+    title: "Wedding Celebrations",
+    headline: "Anita & Yash",
+    gratitude: "20th – 21st November 2026 · Muzaffarpur, Bihar",
     cta: "Tap to Begin",
   },
 
