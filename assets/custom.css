@@ -1,0 +1,570 @@
+/* ==========================================================================
+   custom.css — Premium Luxury Typography, Contrast & Layout Refinements
+   Theme: Royal Temple (Ivory Paper, Temple Ink, Antique Gold, Temple Bronze)
+   ========================================================================== */
+
+:root {
+  --temple-ink-deep: #24140a;
+  --temple-ink: #2c1a10;
+  --temple-bronze-rich: #523419;
+  --temple-bronze: #6b4423;
+  --gold-antique-deep: #8c6228;
+  --gold-antique: #b8893b;
+  --gold-bright: #d4af37;
+  --ivory-paper: #f3e8d4;
+  --ivory-soft: #f7f0e4;
+  --parchment-card: rgba(254, 250, 242, 0.94);
+}
+
+/* Ensure smooth text rendering */
+body {
+  color: var(--temple-ink) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Section Spacing & Transitions */
+section {
+  position: relative;
+  scroll-margin-top: 2rem;
+}
+
+/* --------------------------------------------------------------------------
+   1. HERO SECTION (MM)
+   -------------------------------------------------------------------------- */
+section.isolate .relative.z-\[20\] {
+  padding-bottom: 18vh !important;
+  padding-top: 10vh !important;
+}
+
+section.isolate .rounded-\[2rem\].bg-ivory-soft\/55 {
+  background: var(--parchment-card) !important;
+  border: 1.5px solid rgba(212, 175, 55, 0.5) !important;
+  box-shadow: 0 16px 40px rgba(44, 26, 16, 0.12), 0 2px 10px rgba(212, 175, 55, 0.15) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  padding: 2.25rem 1.75rem !important;
+}
+
+/* Kicker and Subtitles in Hero */
+section.isolate .rounded-\[2rem\] p:nth-of-type(1) {
+  color: var(--gold-antique-deep) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.32em !important;
+}
+
+section.isolate .rounded-\[2rem\] p:nth-of-type(2) {
+  color: var(--temple-bronze-rich) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.16em !important;
+}
+
+/* Couple Heading in Hero */
+section.isolate h1 {
+  color: #633614 !important;
+  font-size: clamp(3.2rem, 9vw, 4.6rem) !important;
+  line-height: 1.15 !important;
+  margin: 0.4rem 0 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Date & Day Badge */
+section.isolate .rounded-\[2rem\] span.h-px {
+  background-color: rgba(184, 137, 59, 0.6) !important;
+}
+
+section.isolate .rounded-\[2rem\] span.font-display {
+  color: var(--temple-bronze-rich) !important;
+  font-weight: 600 !important;
+}
+
+section.isolate .rounded-\[2rem\] .font-display.font-semibold {
+  color: var(--temple-ink-deep) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em !important;
+}
+
+/* Venue In Hero */
+section.isolate .rounded-\[2rem\] p.mt-3.font-display {
+  color: var(--gold-antique-deep) !important;
+  font-weight: 600 !important;
+}
+
+section.isolate .rounded-\[2rem\] p.italic.font-display {
+  color: var(--temple-bronze-rich) !important;
+  font-weight: 500 !important;
+  opacity: 1 !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. SACRED VERSES & INVOCATION (DM)
+   -------------------------------------------------------------------------- */
+section.py-20, section.py-24 {
+  padding-top: 5rem !important;
+  padding-bottom: 5rem !important;
+}
+
+/* Hindi & Tamil Auspicious Verses */
+section.py-20 p.tracking-\[0\.35em\] {
+  color: var(--gold-antique-deep) !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+}
+
+section.py-20 p.tracking-\[0\.28em\] {
+  color: var(--temple-bronze-rich) !important;
+  font-weight: 600 !important;
+  font-size: 1.05rem !important;
+  margin-top: 0.25rem !important;
+}
+
+/* Blessing Quote & Message */
+section.py-20 .italic.font-display {
+  color: var(--temple-ink-deep) !important;
+  font-size: 1.25rem !important;
+  line-height: 1.75 !important;
+  font-weight: 500 !important;
+}
+
+section.py-20 .text-temple-bronze\/85,
+section.py-20 .text-temple-bronze\/70 {
+  color: var(--temple-bronze-rich) !important;
+  font-size: 1.05rem !important;
+  line-height: 1.75 !important;
+  font-weight: 400 !important;
+}
+
+/* Regards in DM */
+section.py-20 .font-display.font-semibold {
+  color: var(--temple-ink-deep) !important;
+  font-size: 1.15rem !important;
+  letter-spacing: 0.08em !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. THE COUPLE SECTION (zM)
+   -------------------------------------------------------------------------- */
+section .grid.sm\:grid-cols-2 {
+  gap: 2rem !important;
+}
+
+section article.rounded-\[1\.75rem\] {
+  background: var(--parchment-card) !important;
+  border: 1px solid rgba(184, 137, 59, 0.45) !important;
+  box-shadow: 0 10px 30px rgba(44, 26, 16, 0.09) !important;
+  padding: 2.25rem 1.75rem !important;
+}
+
+section article.rounded-\[1\.75rem\] h3 {
+  color: var(--temple-ink-deep) !important;
+  font-weight: 700 !important;
+  font-size: 1.85rem !important;
+}
+
+section article.rounded-\[1\.75rem\] p.text-temple-bronze\/65 {
+  color: var(--gold-antique-deep) !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+  margin-top: 0.5rem !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. FAMILY WELCOME CARD (QM)
+   -------------------------------------------------------------------------- */
+/* Clean parchment card overlay with generous padding and crisp hierarchy */
+section.py-12 .max-w-md.rounded-\[2rem\] {
+  border: 1.5px solid rgba(212, 175, 55, 0.5) !important;
+  box-shadow: 0 16px 42px rgba(44, 26, 16, 0.15) !important;
+}
+
+section.py-12 .absolute.inset-0.flex-col {
+  padding: 1.5rem !important;
+}
+
+/* Overlay plaque styling inside the family welcome card */
+.family-card-plaque {
+  background: rgba(254, 250, 242, 0.93) !important;
+  border: 1px solid rgba(212, 175, 55, 0.55) !important;
+  border-radius: 1.5rem !important;
+  box-shadow: 0 10px 32px rgba(44, 26, 16, 0.12) !important;
+  padding: 1.75rem 1.25rem !important;
+  max-width: 340px !important;
+  width: 92% !important;
+  margin: 0 auto !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+section.py-12 p.font-display.text-gold-antique,
+section.py-12 p.font-semibold.uppercase {
+  color: var(--gold-antique-deep) !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.28em !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+}
+
+section.py-12 p.font-script.text-bronze {
+  color: #633614 !important;
+  font-size: clamp(2.2rem, 6vw, 2.75rem) !important;
+  line-height: 1.15 !important;
+  text-shadow: none !important;
+}
+
+section.py-12 p.font-display.italic {
+  color: var(--temple-ink-deep) !important;
+  font-size: 0.95rem !important;
+  line-height: 1.65 !important;
+  text-shadow: none !important;
+  font-weight: 500 !important;
+}
+
+section.py-12 p.text-temple-bronze {
+  color: var(--temple-bronze-rich) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.65 !important;
+  text-shadow: none !important;
+  font-weight: 400 !important;
+}
+
+section.py-12 p.text-temple-bronze\/75 {
+  color: var(--gold-antique-deep) !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.25em !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+}
+
+section.py-12 p.text-temple-ink {
+  color: var(--temple-ink-deep) !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. CELEBRATIONS & EVENTS (NM)
+   -------------------------------------------------------------------------- */
+section article.bg-ivory-soft\/80 {
+  background: var(--parchment-card) !important;
+  border: 1px solid rgba(184, 137, 59, 0.45) !important;
+  box-shadow: 0 12px 32px rgba(44, 26, 16, 0.08) !important;
+  padding: 2.25rem 1.75rem !important;
+}
+
+/* Event Title */
+section article.bg-ivory-soft\/80 p.tracking-\[0\.35em\] {
+  color: var(--gold-antique-deep) !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+}
+
+/* Date Number */
+section article.bg-ivory-soft\/80 p.text-5xl {
+  color: var(--temple-ink-deep) !important;
+  font-weight: 700 !important;
+}
+
+/* Month Label */
+section article.bg-ivory-soft\/80 p.text-lg {
+  color: var(--temple-bronze-rich) !important;
+  font-weight: 600 !important;
+}
+
+/* Event Time */
+section article.bg-ivory-soft\/80 p.text-xl {
+  color: var(--temple-ink-deep) !important;
+  font-weight: 600 !important;
+  font-size: 1.25rem !important;
+}
+
+/* Event Venue */
+section article.bg-ivory-soft\/80 p.text-temple-bronze\/65 {
+  color: var(--temple-bronze-rich) !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+}
+
+/* Event Note */
+section article.bg-ivory-soft\/80 p.text-temple-bronze\/55 {
+  color: var(--temple-bronze-rich) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.6 !important;
+  font-style: italic !important;
+  opacity: 0.95 !important;
+}
+
+/* Countdown Timer */
+.grid-cols-4 .bg-white\/50 {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(184, 137, 59, 0.35) !important;
+  box-shadow: 0 4px 14px rgba(44, 26, 16, 0.06) !important;
+}
+
+.grid-cols-4 p.font-display.text-2xl {
+  color: var(--gold-antique-deep) !important;
+  font-weight: 700 !important;
+}
+
+.grid-cols-4 p.text-temple-bronze\/50 {
+  color: var(--temple-bronze-rich) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.25em !important;
+  font-size: 0.7rem !important;
+  opacity: 1 !important;
+}
+
+/* Program Flow List */
+ul.space-y-2 li.bg-white\/40 {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(184, 137, 59, 0.3) !important;
+  box-shadow: 0 2px 8px rgba(44, 26, 16, 0.04) !important;
+}
+
+ul.space-y-2 li span.text-temple-ink\/85 {
+  color: var(--temple-ink-deep) !important;
+  font-weight: 600 !important;
+}
+
+ul.space-y-2 li span.text-gold-antique {
+  color: var(--gold-antique-deep) !important;
+  font-weight: 600 !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. THE VENUE & RSVP SECTION (ZM)
+   -------------------------------------------------------------------------- */
+section h3.text-3xl.text-temple-ink {
+  color: var(--temple-ink-deep) !important;
+  font-weight: 700 !important;
+}
+
+section p.text-temple-bronze\/70,
+section p.text-temple-bronze\/60 {
+  color: var(--temple-bronze-rich) !important;
+  font-weight: 500 !important;
+  opacity: 1 !important;
+}
+
+/* Calendar & Maps Action Buttons */
+a.border-gold-antique\/40,
+button.border-gold-antique\/40 {
+  background: rgba(254, 250, 242, 0.95) !important;
+  border: 1.5px solid rgba(184, 137, 59, 0.5) !important;
+  color: var(--gold-antique-deep) !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(44, 26, 16, 0.06) !important;
+  transition: all 0.25s ease !important;
+}
+
+a.border-gold-antique\/40:hover,
+button.border-gold-antique\/40:hover {
+  background: rgba(184, 137, 59, 0.15) !important;
+  border-color: var(--gold-bright) !important;
+}
+
+a.border-temple-bronze\/20 {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1.5px solid rgba(184, 137, 59, 0.35) !important;
+  color: var(--temple-ink-deep) !important;
+  font-weight: 600 !important;
+}
+
+/* RSVP Card */
+.bg-ivory-soft\/80.p-6 {
+  background: var(--parchment-card) !important;
+  border: 1px solid rgba(184, 137, 59, 0.45) !important;
+}
+
+.bg-ivory-soft\/80.p-6 p.text-gold-antique {
+  color: var(--gold-antique-deep) !important;
+  font-weight: 700 !important;
+}
+
+.bg-ivory-soft\/80.p-6 p.text-temple-bronze\/70 {
+  color: var(--temple-ink-deep) !important;
+  font-weight: 600 !important;
+  font-size: 1.15rem !important;
+}
+
+/* WhatsApp RSVP Button - Luxury Gilded Style */
+a.border-leaf-bright\/30 {
+  border: 1.5px solid rgba(184, 137, 59, 0.5) !important;
+  background: linear-gradient(135deg, rgba(250, 244, 232, 0.95), rgba(244, 232, 212, 0.95)) !important;
+  color: var(--temple-ink-deep) !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 14px rgba(44, 26, 16, 0.08) !important;
+}
+
+a.border-leaf-bright\/30:hover {
+  background: rgba(212, 175, 55, 0.2) !important;
+  border-color: var(--gold-bright) !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. FOOTER SECTION (PM)
+   -------------------------------------------------------------------------- */
+footer .text-gold-antique {
+  color: var(--gold-antique-deep) !important;
+  font-weight: 600 !important;
+}
+
+footer .font-script.text-bronze {
+  color: #633614 !important;
+}
+
+footer .text-temple-bronze\/55 {
+  color: var(--temple-bronze-rich) !important;
+  font-weight: 600 !important;
+  opacity: 1 !important;
+}
+
+footer button.rounded-full {
+  border: 1.5px solid rgba(184, 137, 59, 0.4) !important;
+  color: var(--temple-bronze-rich) !important;
+  font-weight: 600 !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+}
+
+footer a.hover\:text-gold-antique {
+  color: var(--gold-antique-deep) !important;
+  font-weight: 600 !important;
+}
+
+/* --------------------------------------------------------------------------
+   8. FLOATING AUDIO PLAYER WIDGET
+   -------------------------------------------------------------------------- */
+.music-toggle-btn {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 999;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(250, 244, 232, 0.92);
+  border: 1.5px solid rgba(184, 137, 59, 0.65);
+  box-shadow: 0 4px 18px rgba(44, 26, 16, 0.2), 0 0 12px rgba(212, 175, 55, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
+}
+
+.music-toggle-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 22px rgba(44, 26, 16, 0.28), 0 0 16px rgba(212, 175, 55, 0.4);
+}
+
+.music-toggle-btn:active {
+  transform: scale(0.94);
+}
+
+/* Equalizer sound bars */
+.music-eq-bars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 18px;
+}
+
+.music-eq-bar {
+  width: 3px;
+  height: 100%;
+  background-color: var(--gold-antique-deep);
+  border-radius: 2px;
+  transform-origin: bottom;
+}
+
+.music-playing .music-eq-bar:nth-child(1) {
+  animation: eq-bounce 1s ease-in-out infinite alternate;
+}
+.music-playing .music-eq-bar:nth-child(2) {
+  animation: eq-bounce 0.8s ease-in-out 0.2s infinite alternate;
+}
+.music-playing .music-eq-bar:nth-child(3) {
+  animation: eq-bounce 1.2s ease-in-out 0.4s infinite alternate;
+}
+.music-playing .music-eq-bar:nth-child(4) {
+  animation: eq-bounce 0.9s ease-in-out 0.1s infinite alternate;
+}
+
+@keyframes eq-bounce {
+  0% { transform: scaleY(0.25); }
+  100% { transform: scaleY(1); }
+}
+
+.music-muted .music-eq-bar {
+  transform: scaleY(0.2) !important;
+  opacity: 0.55;
+  animation: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. FLOATING AUTOSCROLL CONTROLLER
+   -------------------------------------------------------------------------- */
+.autoscroll-pill {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 998;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.15rem;
+  border-radius: 9999px;
+  background: rgba(250, 244, 232, 0.94);
+  border: 1.5px solid rgba(184, 137, 59, 0.65);
+  box-shadow: 0 6px 24px rgba(44, 26, 16, 0.18), 0 0 12px rgba(212, 175, 55, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--temple-ink-deep);
+  font-family: Outfit, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  user-select: none;
+}
+
+.autoscroll-pill:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 250, 240, 1);
+  box-shadow: 0 8px 28px rgba(44, 26, 16, 0.24);
+  border-color: var(--gold-bright);
+}
+
+.autoscroll-pill:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.autoscroll-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--gold-bright);
+}
+
+.autoscroll-active .autoscroll-dot {
+  background-color: #27ae60;
+  box-shadow: 0 0 8px rgba(39, 174, 96, 0.6);
+  animation: pulse-dot 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.75); }
+}
+
+.autoscroll-paused .autoscroll-dot {
+  background-color: var(--gold-antique);
+}

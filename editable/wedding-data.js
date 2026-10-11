@@ -11,6 +11,8 @@ window.WEDDING_DATA = {
     groomFull: "Yash",
     brideParents: "",
     groomParents: "",
+    brideRole: "The Bride",
+    groomRole: "The Groom",
     familyName: "Banka",
     hashtag: "#AnitaWedsYash",
     monogram: "A · Y",
@@ -30,9 +32,7 @@ window.WEDDING_DATA = {
     hindi: "॥ श्री गणेशाय नमः ॥",
     tamil: "॥ शुभ विवाह ॥",
     quote: "A wedding is not just a celebration, it is a feeling shared with loved ones.",
-    text: "Thank you for standing by us, blessing Yash & Anita, and being a part of this beautiful journey.",
-    regardsLabel: "Regards",
-    regardsName: "Smt Narvadi Devi Banka",
+    text: "With the divine blessings of Lord Ganesha and our elders, we joyfully invite you to celebrate the wedding ceremonies of Anita & Yash.",
   },
 
   cover: {
@@ -46,9 +46,10 @@ window.WEDDING_DATA = {
   intro: {
     videoSrc: "./editable/assets/video/intro.mp4",
     posterSrc: "./editable/assets/video/poster.png",
+    musicSrc: "./editable/assets/bg-music.mp3",
     focusHint: "Tap to enter",
     skipLabel: "Skip",
-    musicEnabled: false,
+    musicEnabled: true,
   },
 
   venue: {
@@ -60,10 +61,9 @@ window.WEDDING_DATA = {
   familyCard: {
     headline: "Banka Family",
     subheadline: "welcomes you",
-    quote: "A wedding is not just a celebration, it is a feeling shared with loved ones.",
     message: "Thank you for standing by us, blessing Yash & Anita, and being a part of this beautiful journey.",
-    regardsLabel: "Regards",
-    regardsName: "Smt Narvadi Devi Banka",
+    regardsLabel: "Warm Regards",
+    regardsName: "Smt. Narvadi Devi Banka & Family",
   },
 
   rsvp: {
