@@ -29,7 +29,10 @@ window.WEDDING_DATA = {
   verse: {
     hindi: "॥ श्री गणेशाय नमः ॥",
     tamil: "॥ शुभ विवाह ॥",
-    text: "With the blessings of Lord Ganesha and our families, we joyfully invite you to celebrate the wedding of Yash and Anita.",
+    quote: "A wedding is not just a celebration, it is a feeling shared with loved ones.",
+    text: "Thank you for standing by us, blessing Yash & Anita, and being a part of this beautiful journey.",
+    regardsLabel: "Regards",
+    regardsName: "Smt Narvadi Devi Banka",
   },
 
   cover: {
@@ -55,7 +58,8 @@ window.WEDDING_DATA = {
   },
 
   familyCard: {
-    headline: "Banka Family Welcomes You",
+    headline: "Banka Family",
+    subheadline: "welcomes you",
     quote: "A wedding is not just a celebration, it is a feeling shared with loved ones.",
     message: "Thank you for standing by us, blessing Yash & Anita, and being a part of this beautiful journey.",
     regardsLabel: "Regards",
