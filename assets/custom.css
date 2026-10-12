@@ -239,61 +239,89 @@ section.py-12 {
 section.py-12 .max-w-md.rounded-\[2rem\] {
   border: 1.5px solid rgba(212, 175, 55, 0.55) !important;
   box-shadow: 0 16px 42px rgba(44, 26, 16, 0.15) !important;
+  position: relative;
 }
 
-section.py-12 .absolute.inset-0.flex-col {
-  padding: 1.75rem 1.25rem !important;
+section.py-12 .absolute.inset-0.flex-col,
+.family-card-outer {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 1.5rem 1rem !important;
+  display: flex !important;
+  align-items: center !important;
   justify-content: center !important;
 }
 
-/* Inner Plaque for Family Card */
-.family-card-plaque {
-  background: rgba(254, 250, 242, 0.94) !important;
-  border: 1.5px solid rgba(212, 175, 55, 0.55) !important;
-  border-radius: 1.75rem !important;
-  box-shadow: 0 12px 36px rgba(44, 26, 16, 0.12) !important;
-  padding: 2rem 1.5rem !important;
-  max-width: 350px !important;
-  width: 90% !important;
-  margin: 0 auto !important;
+/* Subtle, Compact Centered Translucent Plaque */
+.family-card-subtle-plaque {
+  background: rgba(254, 250, 242, 0.85) !important;
+  border: 1.2px solid rgba(184, 137, 59, 0.5) !important;
+  border-radius: 1.5rem !important;
+  box-shadow: 0 10px 30px rgba(44, 26, 16, 0.12), inset 0 0 16px rgba(212, 175, 55, 0.08) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  padding: 1.4rem 1.25rem !important;
+  max-width: 300px !important;
+  width: 82% !important;
+  margin: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
 }
 
+.family-card-subtle-plaque p.font-semibold.uppercase,
 section.py-12 p.font-semibold.uppercase {
   color: var(--gold-antique) !important;
   font-weight: 700 !important;
-  font-size: 0.9rem !important;
-  letter-spacing: 0.26em !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.24em !important;
   text-shadow: none !important;
 }
 
+.family-card-subtle-plaque p.font-script.text-bronze,
 section.py-12 p.font-script.text-bronze {
   color: var(--temple-bronze) !important;
-  font-size: clamp(2.4rem, 6vw, 3rem) !important;
+  font-size: 2.25rem !important;
   line-height: 1.15 !important;
+  margin: 0.15rem 0 !important;
   text-shadow: none !important;
 }
 
+.family-card-subtle-plaque .hairline-gold,
+section.py-12 .hairline-gold {
+  margin: 0.65rem auto !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(184, 137, 59, 0.7), transparent) !important;
+}
+
+.family-card-subtle-plaque p.font-display.text-xs,
+.family-card-subtle-plaque p.font-display.text-sm,
 section.py-12 p.font-display.text-xs,
 section.py-12 p.font-display.text-sm {
   color: var(--temple-bronze-dark) !important;
-  font-size: 0.95rem !important;
-  line-height: 1.65 !important;
+  font-size: 0.88rem !important;
+  line-height: 1.6 !important;
   text-shadow: none !important;
   font-weight: 500 !important;
 }
 
+.family-card-subtle-plaque p.tracking-\[0\.25em\],
 section.py-12 p.tracking-\[0\.25em\] {
   color: var(--gold-antique) !important;
-  font-size: 0.75rem !important;
+  font-size: 0.72rem !important;
   font-weight: 700 !important;
-  letter-spacing: 0.25em !important;
+  letter-spacing: 0.22em !important;
   text-shadow: none !important;
 }
 
+.family-card-subtle-plaque p.font-semibold.tracking-wide,
 section.py-12 p.font-semibold.tracking-wide {
   color: var(--temple-ink) !important;
-  font-size: 1.15rem !important;
+  font-size: 1.05rem !important;
   font-weight: 700 !important;
+  margin-top: 0.2rem !important;
   text-shadow: none !important;
 }
 
@@ -399,6 +427,11 @@ ul.space-y-2 li span:last-child {
 /* --------------------------------------------------------------------------
    SECTION 6: THE VENUE & RSVP (ZM)
    -------------------------------------------------------------------------- */
+section.pt-6.pb-20 {
+  padding-bottom: 6rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
 section h3.text-3xl {
   color: var(--temple-ink) !important;
   font-size: 2.25rem !important;
@@ -428,18 +461,21 @@ a.border-temple-bronze\/20 {
   font-weight: 700 !important;
 }
 
-/* RSVP Card */
+/* RSVP Card with Generous Bottom Spacing */
 .bg-ivory-soft\/80.p-6 {
   background: var(--ivory-card) !important;
   border: 1.5px solid rgba(184, 137, 59, 0.5) !important;
   border-radius: 1.75rem !important;
-  padding: 2rem 1.5rem !important;
+  padding: 2.25rem 1.75rem !important;
+  margin-bottom: 3.5rem !important;
+  box-shadow: 0 12px 36px rgba(44, 26, 16, 0.1) !important;
 }
 
 .bg-ivory-soft\/80.p-6 p.text-gold-antique {
   color: var(--gold-antique) !important;
   font-weight: 700 !important;
   font-size: 0.85rem !important;
+  letter-spacing: 0.32em !important;
 }
 
 .bg-ivory-soft\/80.p-6 p.text-temple-bronze\/70 {
@@ -459,6 +495,32 @@ a.border-leaf-bright\/30 {
 /* --------------------------------------------------------------------------
    SECTION 7: FOOTER (PM)
    -------------------------------------------------------------------------- */
+footer {
+  padding-top: 3.5rem !important;
+}
+
+footer .relative.z-0.-mb-6,
+footer .pointer-events-none.relative.z-0 {
+  margin-bottom: 0.75rem !important;
+}
+
+/* Couple Watermark Text in Footer */
+footer span.text-\[10vw\],
+footer .footer-couple-watermark {
+  display: block !important;
+  font-size: clamp(2.2rem, 7.5vw, 3.4rem) !important;
+  letter-spacing: 0.22em !important;
+  color: rgba(140, 98, 40, 0.25) !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+}
+
+footer .relative.z-10.mx-auto.mb-14.mt-4 {
+  margin-top: 1.25rem !important;
+  margin-bottom: 4rem !important;
+}
+
 footer .text-gold-antique {
   color: var(--gold-antique) !important;
   font-weight: 700 !important;
@@ -569,54 +631,5 @@ section div.hairline-gold {
 }
 
 .autoscroll-pill {
-  position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  z-index: 998;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.65rem 1.25rem;
-  border-radius: 9999px;
-  background: rgba(254, 250, 242, 0.96);
-  border: 1.5px solid rgba(184, 137, 59, 0.75);
-  box-shadow: 0 8px 24px rgba(44, 26, 16, 0.18), 0 0 12px rgba(212, 175, 55, 0.25);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: var(--temple-ink);
-  font-family: Outfit, sans-serif;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-  user-select: none;
-}
-
-.autoscroll-pill:hover {
-  transform: translateY(-2px);
-  border-color: var(--gold-bright);
-}
-
-.autoscroll-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--gold-bright);
-}
-
-.autoscroll-active .autoscroll-dot {
-  background-color: #27ae60;
-  box-shadow: 0 0 8px rgba(39, 174, 96, 0.6);
-  animation: pulse-dot 1.4s ease-in-out infinite;
-}
-
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.75); }
-}
-
-.autoscroll-paused .autoscroll-dot {
-  background-color: var(--gold-antique);
+  display: none !important;
 }

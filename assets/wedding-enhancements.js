@@ -1,8 +1,10 @@
 /**
  * wedding-enhancements.js
  * 1. Background Music Engine with Luxury Equalizer Toggle Button
- * 2. Automatic Smooth Autoscroll (triggers right after blessing finishes and guest enters)
- * 3. Dynamic Card Enhancements & Text Polish
+ * 2. Automatic Smooth Autoscroll (triggers right after blessing finishes and guest enters, without intrusive floating pill)
+ * 3. Family Welcome Card: Compact translucent centered plaque preserving background artwork
+ * 4. RSVP: Hide WhatsApp button when no number is configured in wedding-data.js
+ * 5. Footer: "ANITA & YASH" watermark with proper spacing preventing text collisions
  */
 
 (function () {
@@ -85,38 +87,13 @@
   window.addEventListener("touchstart", handleFirstInteraction, { passive: true });
 
   /* ==========================================================================
-     2. DUAL-ENGINE AUTOSCROLL (Native + Lenis Support)
+     2. DUAL-ENGINE AUTOSCROLL (Clean, Natural, No Floating Pill)
      ========================================================================== */
   let isAutoScrolling = false;
-  let autoScrollPausedByUser = false;
   let autoScrollRaf = null;
   let lastFrameTime = null;
   let userInteractTimeout = null;
-  const SCROLL_SPEED_PX_PER_SEC = 40; // Luxurious, comfortable reading speed
-
-  const scrollPill = document.createElement("button");
-  scrollPill.className = "autoscroll-pill autoscroll-paused";
-  scrollPill.id = "wedding-autoscroll-pill";
-  scrollPill.setAttribute("type", "button");
-  scrollPill.style.display = "none";
-  scrollPill.innerHTML = `
-    <span class="autoscroll-dot"></span>
-    <span class="autoscroll-text">Auto-Scroll</span>
-  `;
-
-  function updateScrollPillUI(active, text) {
-    if (active) {
-      scrollPill.classList.remove("autoscroll-paused");
-      scrollPill.classList.add("autoscroll-active");
-      scrollPill.querySelector(".autoscroll-text").textContent =
-        text || "Auto-Scrolling";
-    } else {
-      scrollPill.classList.remove("autoscroll-active");
-      scrollPill.classList.add("autoscroll-paused");
-      scrollPill.querySelector(".autoscroll-text").textContent =
-        text || "Resume Scroll";
-    }
-  }
+  const SCROLL_SPEED_PX_PER_SEC = 38; // Smooth, comfortable reading pace
 
   function stepNativeAutoScroll(timestamp) {
     if (!isAutoScrolling) return;
@@ -135,12 +112,10 @@
 
     if (currentScroll >= maxScroll - 6) {
       stopAutoScroll();
-      updateScrollPillUI(false, "End of Invitation");
       return;
     }
 
     if (window.lenis && typeof window.lenis.scrollTo === "function") {
-      // Advance Lenis target
       window.lenis.scrollTo(currentScroll + scrollDelta, {
         immediate: true,
         force: true,
@@ -156,7 +131,6 @@
     if (isAutoScrolling) return;
     isAutoScrolling = true;
     lastFrameTime = null;
-    updateScrollPillUI(true);
     autoScrollRaf = requestAnimationFrame(stepNativeAutoScroll);
   }
 
@@ -166,38 +140,20 @@
       cancelAnimationFrame(autoScrollRaf);
       autoScrollRaf = null;
     }
-    updateScrollPillUI(false);
   }
 
-  function toggleAutoScroll(e) {
-    if (e) {
-      e.stopPropagation();
-      e.preventDefault();
-    }
-    if (isAutoScrolling) {
-      autoScrollPausedByUser = true;
-      stopAutoScroll();
-    } else {
-      autoScrollPausedByUser = false;
-      startAutoScroll();
-    }
-  }
-
-  scrollPill.addEventListener("click", toggleAutoScroll);
-
-  // Pause temporarily when user interacts
+  // Pause temporarily when user interacts, then resume after reading pause
   function handleManualScrollEvent() {
     if (!isAutoScrolling) return;
     stopAutoScroll();
 
-    if (!autoScrollPausedByUser) {
-      clearTimeout(userInteractTimeout);
-      userInteractTimeout = setTimeout(() => {
-        if (!autoScrollPausedByUser && scrollPill.style.display !== "none") {
-          startAutoScroll();
-        }
-      }, 3500);
-    }
+    clearTimeout(userInteractTimeout);
+    userInteractTimeout = setTimeout(() => {
+      const main = document.querySelector("main:not(.sr-only)");
+      if (main) {
+        startAutoScroll();
+      }
+    }, 4000);
   }
 
   window.addEventListener("wheel", handleManualScrollEvent, { passive: true });
@@ -210,9 +166,7 @@
     }
     startAudio();
 
-    // Give the reveal animation 1.2s to complete, then start smooth auto-scroll
     setTimeout(() => {
-      scrollPill.style.display = "inline-flex";
       startAutoScroll();
     }, 1200);
   };
@@ -234,7 +188,6 @@
       ) {
         startAudio();
         setTimeout(() => {
-          scrollPill.style.display = "inline-flex";
           startAutoScroll();
         }, 1200);
       } else if (
@@ -249,19 +202,55 @@
   );
 
   /* ==========================================================================
-     3. DOM ENHANCEMENTS & PLAQUES
+     3. DOM ENHANCEMENTS: FAMILY CARD, RSVP & FOOTER WATERMARK
      ========================================================================== */
   function enhanceDOM() {
-    // 1. Family Card plaque
+    // 1. Family Card: Wrap text inside a compact, translucent, centered plaque
     const familyCardSection = document.querySelector("section.py-12");
     if (familyCardSection) {
-      const innerText = familyCardSection.querySelector(".absolute.inset-0.flex-col");
-      if (innerText && !innerText.classList.contains("family-card-plaque")) {
-        innerText.classList.add("family-card-plaque");
+      const container = familyCardSection.querySelector(".absolute.inset-0.flex-col");
+      if (container) {
+        container.classList.remove("family-card-plaque");
+        container.classList.add("family-card-outer");
+
+        let subtlePlaque = container.querySelector(".family-card-subtle-plaque");
+        if (!subtlePlaque) {
+          subtlePlaque = document.createElement("div");
+          subtlePlaque.className = "family-card-subtle-plaque";
+
+          // Move all existing children of the container inside the subtle plaque
+          while (container.firstChild) {
+            subtlePlaque.appendChild(container.firstChild);
+          }
+          container.appendChild(subtlePlaque);
+        }
       }
     }
 
-    // 2. Couple Roles
+    // 2. RSVP: Hide WhatsApp button if no WhatsApp number is configured
+    const rsvpWhatsapp = (window.WEDDING_DATA?.rsvp?.whatsapp || "").trim();
+    if (!rsvpWhatsapp) {
+      const waButtons = document.querySelectorAll('a[href*="wa.me"]');
+      waButtons.forEach((btn) => {
+        btn.style.display = "none";
+      });
+      // Also adjust grid layout if phone call button is alone
+      const rsvpBtnGrid = document.querySelector(".bg-ivory-soft\\/80.p-6 .grid");
+      if (rsvpBtnGrid && !window.WEDDING_DATA?.rsvp?.phone) {
+        rsvpBtnGrid.style.display = "none";
+      }
+    }
+
+    // 3. Footer: Set couple watermark to "ANITA & YASH" and prevent overlap
+    const footerWatermark = document.querySelector("footer span.text-\\[10vw\\]") ||
+                            document.querySelector("footer .footer-couple-watermark");
+    if (footerWatermark) {
+      if (footerWatermark.textContent !== "ANITA & YASH") {
+        footerWatermark.textContent = "ANITA & YASH";
+      }
+    }
+
+    // 4. Couple Roles fallback
     const coupleCards = document.querySelectorAll("section.py-24 article");
     if (coupleCards && coupleCards.length >= 2) {
       const p1 = coupleCards[0].querySelector("p");
@@ -274,7 +263,7 @@
       }
     }
 
-    // 3. Clean any replacement character artifacts
+    // 5. Clean any replacement character artifacts
     const walker = document.createTreeWalker(
       document.body,
       NodeFilter.SHOW_TEXT,
@@ -287,12 +276,6 @@
         node.nodeValue = node.nodeValue.replace(/\uFFFD/g, "");
       }
     }
-
-    // 4. Show pill if main invitation is active
-    const main = document.querySelector("main:not(.sr-only)");
-    if (main && scrollPill.style.display === "none") {
-      scrollPill.style.display = "inline-flex";
-    }
   }
 
   const observer = new MutationObserver(enhanceDOM);
@@ -300,9 +283,6 @@
   function init() {
     if (!document.getElementById("wedding-music-btn")) {
       document.body.appendChild(musicBtn);
-    }
-    if (!document.getElementById("wedding-autoscroll-pill")) {
-      document.body.appendChild(scrollPill);
     }
     observer.observe(document.body, { childList: true, subtree: true });
     enhanceDOM();
