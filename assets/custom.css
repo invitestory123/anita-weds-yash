@@ -99,12 +99,12 @@ section.isolate > div.z-\[20\] {
 
 /* The Centered Luxury Hero Parchment Card */
 section.isolate .max-w-sm {
-  background: var(--ivory-card) !important;
-  border: 1.5px solid rgba(212, 175, 55, 0.55) !important;
+  background: rgba(254, 250, 242, 0.65) !important;
+  border: 1.5px solid rgba(212, 175, 55, 0.45) !important;
   border-radius: 2rem !important;
-  box-shadow: 0 16px 48px rgba(44, 26, 16, 0.14), inset 0 0 20px rgba(212, 175, 55, 0.08) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
+  box-shadow: 0 16px 48px rgba(44, 26, 16, 0.12), inset 0 0 20px rgba(212, 175, 55, 0.06) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
   padding: 2.5rem 1.75rem !important;
   margin: 0 auto !important;
 }
@@ -255,12 +255,12 @@ section.py-12 .absolute.inset-0.flex-col,
 
 /* Subtle, Compact Centered Translucent Plaque */
 .family-card-subtle-plaque {
-  background: rgba(254, 250, 242, 0.85) !important;
-  border: 1.2px solid rgba(184, 137, 59, 0.5) !important;
+  background: rgba(254, 250, 242, 0.62) !important;
+  border: 1px solid rgba(184, 137, 59, 0.42) !important;
   border-radius: 1.5rem !important;
-  box-shadow: 0 10px 30px rgba(44, 26, 16, 0.12), inset 0 0 16px rgba(212, 175, 55, 0.08) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow: 0 8px 24px rgba(44, 26, 16, 0.08), inset 0 0 14px rgba(212, 175, 55, 0.05) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
   padding: 1.4rem 1.25rem !important;
   max-width: 300px !important;
   width: 82% !important;
@@ -405,11 +405,17 @@ section article.bg-ivory-soft\/80 p.text-temple-bronze\/55 {
 }
 
 /* Program Flow List */
+ul.space-y-2 {
+  margin-bottom: 3.5rem !important;
+}
+
 ul.space-y-2 li {
-  background: rgba(255, 255, 255, 0.88) !important;
+  background: rgba(255, 255, 255, 0.75) !important;
   border: 1.5px solid rgba(184, 137, 59, 0.3) !important;
   padding: 0.9rem 1.25rem !important;
   box-shadow: 0 2px 10px rgba(44, 26, 16, 0.04) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
 }
 
 ul.space-y-2 li span:first-child {
@@ -428,6 +434,7 @@ ul.space-y-2 li span:last-child {
    SECTION 6: THE VENUE & RSVP (ZM)
    -------------------------------------------------------------------------- */
 section.pt-6.pb-20 {
+  padding-top: 5rem !important;
   padding-bottom: 6rem !important;
   margin-bottom: 1.5rem !important;
 }
